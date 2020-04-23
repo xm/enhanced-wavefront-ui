@@ -19,7 +19,7 @@ async function get_target_element() {
       if (element) {
         resolve(element);
       } else if (Date.now() - search_start_ts > search_timeout_ms) {
-        reject(`Could not find chart name element after ${search_timeout_ms}ms`);
+        reject(`Could not find target element after ${search_timeout_ms}ms`);
       } else {
         setTimeout(search, 50);
       }
