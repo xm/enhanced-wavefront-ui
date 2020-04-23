@@ -4,8 +4,10 @@
 ## Features
 
 * Adds 'Edit Alert' button on an active alert's page
-* Adds 'View History' button on an alert's edit page
+  ![Screenshot of Edit Alert button](/screenshots/edit-alert-button.png?raw=true)
 
+* Adds 'View History' button on an alert's edit page
+  ![Screenshot of View History button](/screenshots/view-history-button.png?raw=true)
 
 ## Installation Guide
 
