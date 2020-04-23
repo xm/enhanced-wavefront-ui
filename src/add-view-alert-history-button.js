@@ -1,6 +1,3 @@
-const TARGET_ELEMENT_SELECTOR = '.alert-action-buttons';
-const LINK_ELEMENT_ID = 'ewu-history'
-
 function get_alert_id() {
   const regex = /\balerts\/(\d+)/;
   const match = regex.exec(location.href);
@@ -8,13 +5,13 @@ function get_alert_id() {
   return match && match[1];
 }
 
-async function get_target_element() {
+async function get_target_element(selector) {
   const search_start_ts = Date.now();
   const search_timeout_ms = 10000;
 
   return new Promise((resolve, reject) => {
     const search = () => {
-      const element = document.querySelector(TARGET_ELEMENT_SELECTOR);
+      const element = document.querySelector(selector);
 
       if (element) {
         resolve(element);
@@ -29,7 +26,7 @@ async function get_target_element() {
   });
 }
 
-function create_element(alert_id) {
+function create_element() {
   const icon_element = document.createElement('clr-icon');
   icon_element.setAttribute('shape', 'history');
 
@@ -37,18 +34,13 @@ function create_element(alert_id) {
   element.classList = 'btn btn-sm btn-link';
   element.append(icon_element);
   element.append(' View History');
-  element.onclick = () => window.open(`/alerts/${alert_id}/history`);
 
   return element;
 }
 
-async function insert_element(alert_id) {
-  const target_element = await get_target_element();
-
-  if (!document.getElementById(LINK_ELEMENT_ID)) {
-    const edit_link_element = create_element(alert_id);
-    target_element.append(edit_link_element)
-  }
+async function insert_element(target_element_selector, element) {
+  const target_element = await get_target_element(target_element_selector);
+  target_element.append(element)
 }
 
 async function main() {
@@ -58,7 +50,10 @@ async function main() {
     return;
   }
 
-  insert_element(alert_id);
+  const element = create_element();
+  element.onclick = () => window.open(`/alerts/${alert_id}/history`);
+
+  insert_element('.alert-action-buttons', element);
 }
 
 main();
