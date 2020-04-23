@@ -3,7 +3,7 @@
 
 ## Features
 
-* Adds 'Edit Alert' link on an active alert's page
+* Adds 'Edit Alert' button on an active alert's page
 * Adds 'View History' button on an alert's edit page
 
 

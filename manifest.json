@@ -5,7 +5,7 @@
   "manifest_version": 2,
   "content_scripts": [
     {
-      "js": ["src/add-edit-alert-link.js"],
+      "js": ["src/add-edit-alert-button.js"],
       "matches": ["https://*.wavefront.com/charts*"]
     },
     {
